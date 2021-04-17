@@ -15,6 +15,7 @@ class SegundaActivity : AppCompatActivity() {
     lateinit var tvContador:TextView
 
     lateinit var btnInicio:Button
+    lateinit var btnActi:Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,23 +30,40 @@ class SegundaActivity : AppCompatActivity() {
             contador++
             tvContador.text = "$contador"
 
+            if(!btnDecrementar.isEnabled){
+                btnDecrementar.isEnabled = true
+            }
+            Log.d("Contador", "$contador")
+
+        }
+
         btnDecrementar = findViewById(R.id.btnDecrementar)
         tvContador = findViewById(R.id.tvNumero)
 
          btnDecrementar.setOnClickListener {
-             if (contador<0){
+             if (contador>0){
                  contador--
              }else{
                  btnDecrementar.isEnabled = false
              }
              tvContador.text = "$contador"
          }
-        }
+
+        
         btnInicio = findViewById(R.id.btnInicio)
+        btnActi = findViewById(R.id.btnActi)
+
 
         btnInicio.setOnClickListener {
             val iniIntent = Intent(this, MainActivity::class.java)
             startActivity(iniIntent)
         }
+
+        btnActi.setOnClickListener {
+            val terIntent = Intent(this, TerceraActivity::class.java )
+            startActivity(terIntent)
+
+        }
+
     }
 }
